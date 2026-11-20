@@ -8,6 +8,7 @@
 	    <h2 th:text="${ejercicio.id == null} ? 'Nuevo ejercicio' : 'Editar ejercicio'"></h2>
 	
 	    <form th:action="@{/ejercicios/guardar}" th:object="${ejercicio}" method="post" class="mt-3">
+			<div class="alert alert-danger" th:each="e : ${#fields.globalErrors()}" th:text="${e}"></div>
 	        <input type="hidden" th:field="*{id}">
 	
 	        <div class="mb-3">
