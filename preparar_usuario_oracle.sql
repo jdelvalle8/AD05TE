@@ -1,0 +1,6 @@
+-- Ejecutar UNA VEZ como administrador conectado a XEPDB1. No en CDB$ROOT.
+-- Cambia la contraseña de práctica antes de ejecutar. No es una credencial real.
+CREATE USER AD05_APP IDENTIFIED BY "CAMBIA_ESTA_CLAVE"
+  DEFAULT TABLESPACE USERS TEMPORARY TABLESPACE TEMP
+  QUOTA 50M ON USERS;
+GRANT CREATE SESSION, CREATE TABLE, CREATE SEQUENCE TO AD05_APP;
