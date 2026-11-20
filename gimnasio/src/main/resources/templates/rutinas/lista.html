@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: cabecera}"></head>
+<body>
+<nav th:replace="~{fragments/layout :: menu}"></nav>
+
+<div class="container">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2>Rutinas</h2>
+        <a th:href="@{/rutinas/nueva}" class="btn btn-success">Nueva rutina</a>
+    </div>
+
+    <div th:replace="~{fragments/layout :: avisos}"></div>
+
+    <p th:if="${#lists.isEmpty(rutinas)}" class="text-muted">Todavía no hay rutinas. Crea la primera.</p>
+
+    <table class="table table-striped" th:unless="${#lists.isEmpty(rutinas)}">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Descripción</th>
+                <th>Nivel</th>
+                <th>Ejercicios</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="rutina : ${rutinas}">
+                <td th:text="${rutina.nombre}"></td>
+                <td th:text="${rutina.descripcion}"></td>
+                <td th:text="${rutina.nivel}"></td>
+                <td th:text="${#lists.size(rutina.ejercicios)}"></td>
+                <td>
+                    <a th:href="@{/rutinas/editar/{id}(id=${rutina.id})}" class="btn btn-sm btn-primary">Editar</a>
+                    <a th:href="@{/rutinas/borrar/{id}(id=${rutina.id})}" class="btn btn-sm btn-danger">Borrar</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

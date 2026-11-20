@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: cabecera}"></head>
+<body>
+	<nav th:replace="~{fragments/layout :: menu}"></nav>
+	
+	<div class="container">
+	    <h1>Gestión del gimnasio</h1>
+	    <p class="lead">Desde esta página podrás controlar tus rutinas y ejercicios</p>
+	
+	    <div th:replace="~{fragments/layout :: avisos}"></div>
+	
+	    <div class="row mt-4">
+	        <div class="col-md-6 mb-3">
+	            <div class="card h-100">
+	                <div class="card-body">
+	                    <h5 class="card-title">Rutinas</h5>
+	                    <p class="card-text">Crea y edita las rutinas. Si borras una, se borran también sus ejercicios.</p>
+	                    <a th:href="@{/rutinas}" class="btn btn-primary">Ir a rutinas</a>
+	                </div>
+	            </div>
+	        </div>
+	        <div class="col-md-6 mb-3">
+	            <div class="card h-100">
+	                <div class="card-body">
+	                    <h5 class="card-title">Ejercicios</h5>
+	                    <p class="card-text">Añade ejercicios y asígnalos a una rutina.</p>
+	                    <a th:href="@{/ejercicios}" class="btn btn-primary">Ir a ejercicios</a>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	</div>
+</body>
+</html>

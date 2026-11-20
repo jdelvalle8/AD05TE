@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: cabecera}"></head>
+<body>
+	<nav th:replace="~{fragments/layout :: menu}"></nav>
+	
+	<div class="container">
+	    <div class="d-flex justify-content-between align-items-center mb-3">
+	        <h2>Ejercicios</h2>
+	        <a th:href="@{/ejercicios/nuevo}" class="btn btn-success">Nuevo ejercicio</a>
+	    </div>
+	
+	    <div th:replace="~{fragments/layout :: avisos}"></div>
+	
+	    <p th:if="${#lists.isEmpty(ejercicios)}" class="text-muted">Todavía no hay ejercicios.</p>
+	
+	    <table class="table table-striped" th:unless="${#lists.isEmpty(ejercicios)}">
+	        <thead>
+	            <tr>
+	                <th>Nombre</th>
+	                <th>Series</th>
+	                <th>Repeticiones</th>
+	                <th>Rutina</th>
+	                <th>Acciones</th>
+	            </tr>
+	        </thead>
+	        <tbody>
+	            <tr th:each="ejercicio : ${ejercicios}">
+	                <td th:text="${ejercicio.nombre}"></td>
+	                <td th:text="${ejercicio.series}"></td>
+	                <td th:text="${ejercicio.repeticiones}"></td>
+	                <td th:text="${ejercicio.rutina.nombre}"></td>
+	                <td>
+	                    <a th:href="@{/ejercicios/editar/{id}(id=${ejercicio.id})}" class="btn btn-sm btn-primary">Editar</a>
+	                    <a th:href="@{/ejercicios/borrar/{id}(id=${ejercicio.id})}" class="btn btn-sm btn-danger">Borrar</a>
+	                </td>
+	            </tr>
+	        </tbody>
+	    </table>
+	</div>
+</body>
+</html>

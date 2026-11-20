@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: cabecera}"></head>
+<body>
+	<nav th:replace="~{fragments/layout :: menu}"></nav>
+	
+	<div class="container">
+	    <h2>Borrar rutina</h2>
+	
+	    <div class="alert alert-warning mt-3">
+	        <p>Vas a borrar la rutina <strong th:text="${rutina.nombre}"></strong>.</p>
+	        <p th:if="${#lists.isEmpty(rutina.ejercicios)}">No tiene ejercicios asociados.</p>
+	        <div th:unless="${#lists.isEmpty(rutina.ejercicios)}">
+	            <p>También se borrarán sus <span th:text="${#lists.size(rutina.ejercicios)}"></span> ejercicios:</p>
+	            <ul>
+	                <li th:each="ejercicio : ${rutina.ejercicios}" th:text="${ejercicio.nombre}"></li>
+	            </ul>
+	        </div>
+	        <p class="mb-0">Esta acción no se puede deshacer.</p>
+	    </div>
+	
+	    <form th:action="@{/rutinas/borrar/{id}(id=${rutina.id})}" method="post">
+	        <button type="submit" class="btn btn-danger">Sí, borrar</button>
+	        <a th:href="@{/rutinas}" class="btn btn-secondary">Cancelar</a>
+	    </form>
+	</div>
+</body>
+</html>

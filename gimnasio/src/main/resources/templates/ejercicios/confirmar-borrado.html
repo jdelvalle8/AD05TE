@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: cabecera}"></head>
+<body>
+	<nav th:replace="~{fragments/layout :: menu}"></nav>
+	
+	<div class="container">
+	    <h2>Borrar ejercicio</h2>
+	
+	    <div class="alert alert-warning mt-3">
+	        <p>Vas a borrar el ejercicio <strong th:text="${ejercicio.nombre}"></strong>.</p>
+	        <p>La rutina <strong th:text="${ejercicio.rutina.nombre}"></strong> no se borra y seguirá con sus demás ejercicios.</p>
+	        <p class="mb-0">Esta acción no se puede deshacer.</p>
+	    </div>
+	
+	    <form th:action="@{/ejercicios/borrar/{id}(id=${ejercicio.id})}" method="post">
+	        <button type="submit" class="btn btn-danger">Sí, borrar</button>
+	        <a th:href="@{/ejercicios}" class="btn btn-secondary">Cancelar</a>
+	    </form>
+	</div>
+</body>
+</html>
